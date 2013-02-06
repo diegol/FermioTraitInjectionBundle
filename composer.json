@@ -1,0 +1,30 @@
+{
+    "name": "fermio/trait-injection-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony FermioTraitInjectionBundle",
+    "keywords": ["fermio", "trait", "injection", "symfony", "bundle"],
+    "homepage": "https://github.com/fermio/FermioTraitInjectionBundle",
+    "license": "MIT",
+    "authors": [{
+        "name": "Pierre Minnieur",
+        "email": "pierre@ferm.io",
+        "homepage": "http://ferm.io/"
+    }],
+    "require": {
+        "php": "~5.4",
+        "symfony/framework-bundle": "~2.1"
+    },
+    "require-dev": {
+        "doctrine/doctrine-bundle": "~1.1",
+        "symfony/form": "~2.1",
+        "symfony/security-bundle": "~2.1",
+        "symfony/swiftmailer-bundle": "~2.1",
+        "symfony/validator": "~2.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "Fermio\\Bundle\\TraitInjectionBundle\\": ""
+        }
+    },
+    "target-dir": "Fermio/Bundle/TraitInjectionBundle"
+}

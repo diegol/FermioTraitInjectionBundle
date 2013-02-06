@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Container Aware -->
+        <service id="service_container" class="Symfony\Component\DependencyInjection\Container" scope="container" />
+        <service id="container_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestContainerAware" />
+
+        <!-- Doctrine Aware -->
+        <service id="doctrine" class="Doctrine\Bundle\DoctrineBundle\Registry" />
+        <service id="doctrine_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestDoctrineAware" />
+
+        <!-- Event Dispatcher Aware -->
+        <service id="event_dispatcher" class="Symfony\Component\EventDispatcher\EventDispatcher" />
+        <service id="event_dispatcher_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestEventDispatcherAware" />
+
+        <!-- Form Builder Aware -->
+        <service id="form_builder" class="Symfony\Component\Form\FormBuilder" />
+        <service id="form_builder_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestFormBuilderAware" />
+
+        <!-- Kernel Aware -->
+        <service id="kernel" class="Symfony\Component\HttpKernel\Kernel" />
+        <service id="kernel_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestKernelAware" />
+
+        <!-- Logger Aware -->
+        <service id="logger" class="Symfony\Component\HttpKernel\Log\NullLogger" />
+        <service id="logger_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestLoggerAware" />
+
+        <!-- Request Aware -->
+        <service id="request" class="Symfony\Component\HttpFoundation\Request" synthetic="true" scope="request" />
+        <service id="request_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestRequestAware" />
+
+        <!-- Router Aware -->
+        <service id="router" class="Symfony\Bundle\FrameworkBundle\Routing\Router" />
+        <service id="router_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestRouterAware" />
+
+        <!-- Security Context Aware -->
+        <service id="security_context" class="Symfony\Component\Security\Core\SecurityContext" />
+        <service id="security_context_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestSecurityContextAware" />
+
+        <!-- Swiftmailer Aware -->
+        <service id="mailer" class="Swift_Mailer" />
+        <service id="swiftmailer_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestSwiftmailerAware" />
+
+        <!-- Templating Aware -->
+        <service id="templating" class="Symfony\Component\Templating\PhpEngine" />
+        <service id="templating_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestTemplatingAware" />
+
+        <!-- Translator Aware -->
+        <service id="translator" class="Symfony\Component\Translation\Translator" />
+        <service id="translator_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestTranslatorAware" />
+
+        <!-- Validator Aware -->
+        <service id="validator" class="Symfony\Component\Validator\Validator" />
+        <service id="validator_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestValidatorAware" />
+    </services>
+</container>
