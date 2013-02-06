@@ -55,17 +55,24 @@ services you want to be injected for a specific trait.
 fermio_trait_injection:
     traits:
         container:
+            # the FQCN of the trait a class has to use to trigger injection
             trait: Fermio\Bundle\TraitInjectionBundle\Traits\ContainerAware
-            method: setContainer
-            service: service_container
+            method: setContainer # the method to call for service injection
+            service: service_container # the id of the service to be injected
 ```
 
 By default, all services implementing a specified trait will have a method call
 added to their definition, except:
 
-* the service is defined to be skipped in the configuration (see `skip`)
+* the service is defined to be excluded in the configuration (see `excludes`)
 * the service is synthetic (runtime injection, container cannot build it)
 * the service has already an identical method call configured
+
+## Usage
+
+The bundle ships with some traits useful for every Symfony application. Take a
+look in the `Traits/` directory for a comprehensive list of available traits.
+Feel free to provide more useful traits via pull requests.
 
 ## Advanced Usage
 
@@ -102,7 +109,7 @@ fermio_trait_injection:
             trait: Fermio\Bundle\TraitInjectionBundle\Traits\ContainerAware
             method: setContainer
             service: service_container
-            invalid: exception
+            invalid: exception # default
 ```
 
 #### Ignore
