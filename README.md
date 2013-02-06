@@ -1,4 +1,4 @@
-# FermioTraitInjectionBundle [![build status](https://secure.travis-ci.org/fermio/FermioTraitInjectionBundle.png)](http://travis-ci.org/fermio/FermioTraitInjectionBundle)
+# FermioTraitInjectionBundle [![Build Status](https://travis-ci.org/fermio/FermioTraitInjectionBundle.png?branch=master)](https://travis-ci.org/fermio/FermioTraitInjectionBundle)
 
 Symfony bundle for trait injection.
 
