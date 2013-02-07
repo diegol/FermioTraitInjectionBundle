@@ -55,8 +55,8 @@ class AddMethodCallsPass implements CompilerPassInterface
      */
     private function loadConfiguration(ContainerBuilder $container)
     {
-        $config = $container->getParameter('fermio_traits_injection.config');
-        $container->getParameterBag()->remove('fermio_traits_injection.config');
+        $config = $container->getParameter('fermio_trait_injection.config');
+        $container->getParameterBag()->remove('fermio_trait_injection.config');
 
         foreach (['excludes', 'traits'] as $key) {
             if (false === array_key_exists($key, $config)) {

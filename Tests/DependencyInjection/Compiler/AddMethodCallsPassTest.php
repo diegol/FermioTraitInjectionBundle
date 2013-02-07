@@ -105,7 +105,7 @@ class AddMethodCallsPassTest extends \PHPUnit_Framework_TestCase
         ];
 
         $container = new ContainerBuilder();
-        $container->setParameter('fermio_traits_injection.config', [
+        $container->setParameter('fermio_trait_injection.config', [
             'excludes' => [],
             'traits' => $traits,
         ]);
@@ -121,7 +121,7 @@ class AddMethodCallsPassTest extends \PHPUnit_Framework_TestCase
     public function testServiceSkippingById()
     {
         $container = new ContainerBuilder();
-        $container->setParameter('fermio_traits_injection.config', [
+        $container->setParameter('fermio_trait_injection.config', [
             'excludes' => ['container_aware'],
             'traits' => [
                 'container' => [
@@ -142,7 +142,7 @@ class AddMethodCallsPassTest extends \PHPUnit_Framework_TestCase
     public function testTraitsParameterIsRemoved()
     {
         $container = new ContainerBuilder();
-        $container->setParameter('fermio_traits_injection.config', [
+        $container->setParameter('fermio_trait_injection.config', [
             'excludes' => [],
             'traits' => [
                 'container' => [
@@ -157,7 +157,7 @@ class AddMethodCallsPassTest extends \PHPUnit_Framework_TestCase
         (new XmlFileLoader($container, new FileLocator(__DIR__.'/../../Resources/config')))->load('services.xml');
         (new AddMethodCallsPass())->process($container);
 
-        $this->assertFalse($container->hasParameter('fermio_traits_injection.config'));
+        $this->assertFalse($container->hasParameter('fermio_trait_injection.config'));
     }
 
     /**
@@ -167,7 +167,7 @@ class AddMethodCallsPassTest extends \PHPUnit_Framework_TestCase
     public function testProcessWithUnknownDefinitionAsReference()
     {
         $container = new ContainerBuilder();
-        $container->setParameter('fermio_traits_injection.config', [
+        $container->setParameter('fermio_trait_injection.config', [
             'excludes' => [],
             'traits' => [
                 'container' => [
