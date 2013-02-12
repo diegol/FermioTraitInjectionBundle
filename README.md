@@ -6,10 +6,10 @@ Symfony bundle for trait injection.
 
 For documentation, see:
 
-    Resources/doc/index.md
+[Resources/doc/index.md](Resources/doc/index.md)
 
 ## License
 
 For license, see:
 
-    Resources/meta/LICENSE
+[Resources/meta/LICENSE](Resources/meta/LICENSE)
