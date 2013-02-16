@@ -13,7 +13,7 @@ Add FermioTraitInjectionBundle in your composer.json:
 ``` js
 {
     "require": {
-        "fermio/trait-injection-bundle": "*"
+        "fermio/trait-injection-bundle": "1.0.*@dev"
     }
 }
 ```
