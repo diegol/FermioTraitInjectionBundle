@@ -11,19 +11,19 @@
 
 namespace Fermio\Bundle\TraitInjectionBundle\Traits;
 
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 trait DoctrineAware
 {
     /**
-     * @var RegistryInterface
+     * @var ManagerRegistry
      */
     protected $doctrine;
 
     /**
-     * Returns the doctrine registry.
+     * Returns the Doctrine registry manager.
      *
-     * @return RegistryInterface The doctrine registry
+     * @return ManagerRegistry The Doctrine registry manager
      */
     public function getDoctrine()
     {
@@ -31,12 +31,12 @@ trait DoctrineAware
     }
 
     /**
-     * Sets the doctrine registry.
+     * Sets the Doctrine registry manager.
      *
-     * @param  RegistryInterface $doctrine The doctrine registry
+     * @param  ManagerRegistry $doctrine The Doctrine registry manager
      * @return void
      */
-    public function setDoctrine(RegistryInterface $doctrine)
+    public function setDoctrine(ManagerRegistry $doctrine)
     {
         $this->doctrine = $doctrine;
     }
