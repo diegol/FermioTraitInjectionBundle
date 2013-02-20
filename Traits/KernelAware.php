@@ -11,19 +11,19 @@
 
 namespace Fermio\Bundle\TraitInjectionBundle\Traits;
 
-use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 trait KernelAware
 {
     /**
-     * @var KernelInterface
+     * @var HttpKernelInterface
      */
     protected $kernel;
 
     /**
      * Returns the kernel.
      *
-     * @return KernelInterface The kernel
+     * @return HttpKernelInterface The kernel
      */
     public function getKernel()
     {
@@ -33,10 +33,10 @@ trait KernelAware
     /**
      * Sets the kernel.
      *
-     * @param  KernelInterface $kernel The kernel
+     * @param  HttpKernelInterface $kernel The kernel
      * @return void
      */
-    public function setKernel(KernelInterface $kernel)
+    public function setKernel(HttpKernelInterface $kernel)
     {
         $this->kernel = $kernel;
     }

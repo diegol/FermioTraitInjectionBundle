@@ -21,7 +21,7 @@
         <service id="fermio.form_factory_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestFormFactoryAware" />
 
         <!-- Kernel Aware -->
-        <service id="kernel" class="Symfony\Component\HttpKernel\Kernel" />
+        <service id="kernel" class="Symfony\Component\HttpKernel\HttpKernel" />
         <service id="fermio.kernel_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestKernelAware" />
 
         <!-- Logger Aware -->
