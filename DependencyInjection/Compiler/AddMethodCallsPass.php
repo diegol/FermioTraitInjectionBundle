@@ -242,7 +242,7 @@ class AddMethodCallsPass implements CompilerPassInterface
             return false;
         }
 
-        if (!in_array($config['trait'], (new \ReflectionClass($definition->getClass()))->getTraitNames())) {
+        if (!$this->usesTrait(new \ReflectionClass($definition->getClass()), $config['trait'])) {
             return false;
         }
 
@@ -251,6 +251,29 @@ class AddMethodCallsPass implements CompilerPassInterface
         }
 
         return true;
+    }
+
+    /**
+     * Whether a class uses a trait (or a trait used uses the trait).
+     *
+     * @param  string  $class The fully qualified class name
+     * @param  string  $trait The fully qualified class name of the trait
+     * @return boolean Whether the classes uses the trait
+     */
+    private function usesTrait(\ReflectionClass $class, $trait)
+    {
+        if (in_array($trait, $class->getTraitNames())) {
+            return true;
+        }
+
+        // check trait inheritance (trait uses trait)
+        foreach ($class->getTraits() as $reflTrait) {
+            if ($this->usesTrait($reflTrait, $trait)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
