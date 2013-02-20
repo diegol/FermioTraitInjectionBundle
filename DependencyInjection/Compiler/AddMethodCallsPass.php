@@ -187,11 +187,16 @@ class AddMethodCallsPass implements CompilerPassInterface
      */
     private function addMethodCalls($name, array $config, ContainerBuilder $container)
     {
-        if (!$container->hasDefinition($service = $config['service'])) {
+        if (!$container->hasDefinition($service = $config['service']) && !$container->hasAlias($service)) {
             throw new \LogicException(sprintf('Referenced service definition with id "%s" for trait injection "%s" does not exist.', $service, $name));
         }
 
-        $reference = $container->getDefinition($service);
+        // reference may be an aliased service
+        $reference = $container->hasAlias($service)
+            ? $container->getDefinition($container->getAlias($service))
+            : $container->getDefinition($service)
+        ;
+
         $arguments = [new Reference($service, $config['invalid'])];
         foreach ($this->findDefinitions($config, $container) as $definition) {
             $definition->addMethodCall($config['method'], $arguments);
