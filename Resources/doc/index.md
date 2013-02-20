@@ -104,6 +104,8 @@ fermio_trait_injection:
         fermio.container_aware: { invalid: ignore }
 ```
 
+> **BEWARE:** The `DoctrineAware` trait is not configured by default.
+
 ### Disable automatic injection
 
 If you want to disable the trait injection for specific services (e.g. inject
