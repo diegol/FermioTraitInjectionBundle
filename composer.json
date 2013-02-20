@@ -1,7 +1,7 @@
 {
     "name": "fermio/trait-injection-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony bundle for trait injection",
+    "description": "Symfony bundle for trait injection.",
     "keywords": ["fermio", "trait", "injection", "symfony", "bundle"],
     "homepage": "https://github.com/fermio/FermioTraitInjectionBundle",
     "license": "MIT",
