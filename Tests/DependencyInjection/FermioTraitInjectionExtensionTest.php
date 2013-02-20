@@ -29,6 +29,7 @@ class FermioTraitInjectionExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $configs = [
             'fermio_trait_injection' => [
+                'defaults' => false,
                 'excludes' => [],
                 'traits' => [
                     'container' => [

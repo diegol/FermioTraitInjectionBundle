@@ -79,6 +79,31 @@ Feel free to provide more useful traits via pull requests.
 Besides the trait injection there are some options to gain a coarser-grained
 control over the bundle.
 
+### Enable default configuration
+
+The bundle may use its default trait configuration - coordinated with the
+[Symfony Standard Edition][2] service names. Each trait shipped by the bundle
+will be configured and ready to use out of the box.
+
+``` yaml
+# app/config/config.yml
+fermio_trait_injection:
+    defaults: true
+```
+
+You can override each trait configuration at will, just use the same name for
+the trait configuration - it's enough to only provide the settings you want to
+override:
+
+``` yaml
+# app/config/config.yml
+fermio_trait_injection:
+    defaults: true
+    traits:
+        # the invalid default value is 'exception'
+        fermio.container_aware: { invalid: ignore }
+```
+
 ### Disable automatic injection
 
 If you want to disable the trait injection for specific services (e.g. inject
@@ -146,7 +171,7 @@ fermio_trait_injection:
 ## Example
 
 If you're not familiar with automatic dependency injection please read this
-article about [interface injection][1] first. This feature is gone for several
+article about [interface injection][2] first. This feature is gone for several
 reasons and I do not want to argue about that (I liked it in the first place).
 Since PHP5.4 we have traits and the goal of this bundle is to solve the same
 problems like the interface injection once solved: keep service configuration
@@ -367,4 +392,5 @@ services:
         # you shall concentrate on the code!
 ```
 
-[1]: http://avalanche123.com/blog/2010/10/01/interface-injection-and-symfony2-dic/
+[1]: https://github.com/symfony/symfony-standard
+[2]: http://avalanche123.com/blog/2010/10/01/interface-injection-and-symfony2-dic/

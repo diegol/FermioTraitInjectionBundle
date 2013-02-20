@@ -27,85 +27,13 @@ class AddMethodCallsPassTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testProcess()
+    public function testProcessWithoutDefaultTraitsConfiguration()
     {
-        $traits = [
-            'container_aware' => [
-                'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\ContainerAware',
-                'method'  => 'setContainer',
-                'service' => 'service_container',
-                'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
-            ],
-            'event_dispatcher_aware' => [
-                'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\EventDispatcherAware',
-                'method'  => 'setEventDispatcher',
-                'service' => 'event_dispatcher',
-                'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
-            ],
-            'form_builder_aware' => [
-                'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\FormBuilderAware',
-                'method'  => 'setFormBuilder',
-                'service' => 'form_builder',
-                'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
-            ],
-            'kernel_aware' => [
-                'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\KernelAware',
-                'method'  => 'setKernel',
-                'service' => 'kernel',
-                'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
-            ],
-            'logger_aware' => [
-                'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\LoggerAware',
-                'method'  => 'setLogger',
-                'service' => 'logger',
-                'invalid' => ContainerInterface::IGNORE_ON_INVALID_REFERENCE,
-            ],
-            'request_aware' => [
-                'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\RequestAware',
-                'method'  => 'setRequest',
-                'service' => 'request',
-                'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
-            ],
-            'router_aware' => [
-                'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\RouterAware',
-                'method'  => 'setRouter',
-                'service' => 'router',
-                'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
-            ],
-            'security_context_aware' => [
-                'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\SecurityContextAware',
-                'method'  => 'setSecurityContext',
-                'service' => 'security_context',
-                'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
-            ],
-            'swiftmailer_aware' => [
-                'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\SwiftmailerAware',
-                'method'  => 'setMailer',
-                'service' => 'mailer',
-                'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
-            ],
-            'templating_aware' => [
-                'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\TemplatingAware',
-                'method'  => 'setTemplating',
-                'service' => 'templating',
-                'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
-            ],
-            'translator_aware' => [
-                'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\TranslatorAware',
-                'method'  => 'setTranslator',
-                'service' => 'translator',
-                'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
-            ],
-            'validator_aware' => [
-                'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\ValidatorAware',
-                'method'  => 'setValidator',
-                'service' => 'validator',
-                'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
-            ],
-        ];
+        $traits = AddMethodCallsPass::getDefaultTraitsConfiguration();
 
         $container = new ContainerBuilder();
         $container->setParameter('fermio_trait_injection.config', [
+            'defaults' => false,
             'excludes' => [],
             'traits' => $traits,
         ]);
@@ -118,14 +46,57 @@ class AddMethodCallsPassTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function testProcessWithDefaultTraitsConfiguration()
+    {
+        $container = new ContainerBuilder();
+        $container->setParameter('fermio_trait_injection.config', [
+            'defaults' => true,
+            'excludes' => [],
+            'traits' => [],
+        ]);
+
+        (new XmlFileLoader($container, new FileLocator(__DIR__.'/../../Resources/config')))->load('services.xml');
+        (new AddMethodCallsPass())->process($container);
+
+        foreach (AddMethodCallsPass::getDefaultTraitsConfiguration() as $name => $config) {
+            $this->assertDefinition($container, $name, $config['method'], $config['service'], $config['invalid']);
+        }
+    }
+
+    public function testMergeDefaultTraitsConfiguration()
+    {
+        $container = new ContainerBuilder();
+        $container->setParameter('fermio_trait_injection.config', [
+            'defaults' => true,
+            'excludes' => [],
+            'traits' => [
+                'fermio.container_aware' => [
+                    'invalid' => ContainerInterface::IGNORE_ON_INVALID_REFERENCE,
+                ],
+            ],
+        ]);
+
+        (new XmlFileLoader($container, new FileLocator(__DIR__.'/../../Resources/config')))->load('services.xml');
+        (new AddMethodCallsPass())->process($container);
+
+        $this->assertEquals(
+            ContainerInterface::IGNORE_ON_INVALID_REFERENCE,
+            $container
+                ->getDefinition('fermio.container_aware')
+                ->getMethodCalls()[0][1][0]
+                ->getInvalidBehavior()
+        );
+    }
+
     public function testServiceSkippingById()
     {
         $container = new ContainerBuilder();
         $container->setParameter('fermio_trait_injection.config', [
-            'excludes' => ['container_aware'],
+            'defaults' => false,
+            'excludes' => ['fermio.container_aware'],
             'traits' => [
-                'container' => [
-                    'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\ContainerAware',
+                'fermio.container_aware' => [
+                    'trait'   => 'Fermio\\Bundle\\TraitInjectionBundle\\Traits\\ContainerAware',
                     'method'  => 'setContainer',
                     'service' => 'service_container',
                     'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
@@ -136,16 +107,17 @@ class AddMethodCallsPassTest extends \PHPUnit_Framework_TestCase
         (new XmlFileLoader($container, new FileLocator(__DIR__.'/../../Resources/config')))->load('services.xml');
         (new AddMethodCallsPass())->process($container);
 
-        $this->assertFalse($container->getDefinition('container_aware')->hasMethodCall('setContainer'));
+        $this->assertFalse($container->getDefinition('fermio.container_aware')->hasMethodCall('setContainer'));
     }
 
     public function testTraitsParameterIsRemoved()
     {
         $container = new ContainerBuilder();
         $container->setParameter('fermio_trait_injection.config', [
+            'defaults' => false,
             'excludes' => [],
             'traits' => [
-                'container' => [
+                'fermio.container_aware' => [
                     'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\ContainerAware',
                     'method'  => 'setContainer',
                     'service' => 'service_container',
@@ -162,15 +134,16 @@ class AddMethodCallsPassTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \LogicException
-     * @expectedExceptionMessage Referenced service definition with id "does_not_exist" for trait injection "container" does not exist
+     * @expectedExceptionMessage Referenced service definition with id "does_not_exist" for trait injection "fermio.container_aware" does not exist
      */
     public function testProcessWithUnknownDefinitionAsReference()
     {
         $container = new ContainerBuilder();
         $container->setParameter('fermio_trait_injection.config', [
+            'defaults' => false,
             'excludes' => [],
             'traits' => [
-                'container' => [
+                'fermio.container_aware' => [
                     'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\ContainerAware',
                     'method'  => 'setContainer',
                     'service' => 'does_not_exist',
