@@ -82,14 +82,21 @@ control over the bundle.
 ### Enable default configuration
 
 The bundle may use its default trait configuration - coordinated with the
-[Symfony Standard Edition][2] service names. Each trait shipped by the bundle
+[Symfony Standard Edition][1] service names. Each trait shipped by the bundle
 will be configured and ready to use out of the box.
 
 ``` yaml
 # app/config/config.yml
 fermio_trait_injection:
     defaults: true
+    traits: # manually add DoctrineAware if you use Doctrine
+        fermio.doctrine_aware:
+            trait: Fermio\Bundle\TraitInjectionBundle\Traits\DoctrineAware
+            method: setDoctrine
+            service: doctrine
 ```
+
+> **BEWARE:** The `DoctrineAware` trait is not configured by default.
 
 You can override each trait configuration at will, just use the same name for
 the trait configuration - it's enough to only provide the settings you want to
@@ -104,7 +111,12 @@ fermio_trait_injection:
         fermio.container_aware: { invalid: ignore }
 ```
 
-> **BEWARE:** The `DoctrineAware` trait is not configured by default.
+### Advanced traits library
+
+If simple service injection is not enough, you may want to use the
+[advanced traits library][2]. It's completely compatible with this bundle out
+of the box and replaces the traits of with more advanced ones, providing
+helper methods considering the Symfony Component interfaces.
 
 ### Disable automatic injection
 
@@ -173,7 +185,7 @@ fermio_trait_injection:
 ## Example
 
 If you're not familiar with automatic dependency injection please read this
-article about [interface injection][2] first. This feature is gone for several
+article about [interface injection][3] first. This feature is gone for several
 reasons and I do not want to argue about that (I liked it in the first place).
 Since PHP5.4 we have traits and the goal of this bundle is to solve the same
 problems like the interface injection once solved: keep service configuration
@@ -395,4 +407,5 @@ services:
 ```
 
 [1]: https://github.com/symfony/symfony-standard
-[2]: http://avalanche123.com/blog/2010/10/01/interface-injection-and-symfony2-dic/
+[2]: https://github.com/fermio/Traits
+[3]: http://avalanche123.com/blog/2010/10/01/interface-injection-and-symfony2-dic/

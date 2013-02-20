@@ -1,7 +1,7 @@
 {
     "name": "fermio/trait-injection-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony FermioTraitInjectionBundle",
+    "description": "Symfony bundle for trait injection",
     "keywords": ["fermio", "trait", "injection", "symfony", "bundle"],
     "homepage": "https://github.com/fermio/FermioTraitInjectionBundle",
     "license": "MIT",
@@ -20,6 +20,9 @@
         "symfony/security-bundle": "~2.1",
         "symfony/swiftmailer-bundle": "~2.1",
         "symfony/validator": "~2.1"
+    },
+    "suggest": {
+        "fermio/traits": "Advanced traits for Symfony2 applications"
     },
     "autoload": {
         "psr-0": {
