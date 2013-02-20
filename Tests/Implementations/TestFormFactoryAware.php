@@ -11,9 +11,9 @@
 
 namespace Fermio\Bundle\TraitInjectionBundle\Tests\Implementations;
 
-use Fermio\Bundle\TraitInjectionBundle\Traits\FormBuilderAware;
+use Fermio\Bundle\TraitInjectionBundle\Traits\FormFactoryAware;
 
-class TestFormBuilderAware
+class TestFormFactoryAware
 {
-    use FormBuilderAware;
+    use FormFactoryAware;
 }

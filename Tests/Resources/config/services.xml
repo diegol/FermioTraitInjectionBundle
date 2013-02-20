@@ -16,9 +16,9 @@
         <service id="event_dispatcher" class="Symfony\Component\EventDispatcher\EventDispatcher" />
         <service id="event_dispatcher_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestEventDispatcherAware" />
 
-        <!-- Form Builder Aware -->
-        <service id="form_builder" class="Symfony\Component\Form\FormBuilder" />
-        <service id="form_builder_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestFormBuilderAware" />
+        <!-- Form Factory Aware -->
+        <service id="form_factory" class="Symfony\Component\Form\FormFactory" />
+        <service id="form_factory_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestFormFactoryAware" />
 
         <!-- Kernel Aware -->
         <service id="kernel" class="Symfony\Component\HttpKernel\Kernel" />
