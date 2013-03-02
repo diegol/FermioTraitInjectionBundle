@@ -17,7 +17,7 @@ class EventDispatcherAwareTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait = new TestEventDispatcherAware();
+        $trait = $this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\EventDispatcherAware');
         $trait->setEventDispatcher($dispatcher = $this->getMock('Symfony\\Component\\EventDispatcher\\EventDispatcherInterface'));
         $this->assertSame($dispatcher, $trait->getEventDispatcher());
     }

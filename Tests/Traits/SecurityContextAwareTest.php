@@ -17,7 +17,7 @@ class SecurityContextAwareTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait = new TestSecurityContextAware();
+        $trait = $this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\SecurityContextAware');
         $trait->setSecurityContext($securityContext = $this->getMock('Symfony\\Component\\Security\\Core\\SecurityContextInterface'));
         $this->assertSame($securityContext, $trait->getSecurityContext());
     }

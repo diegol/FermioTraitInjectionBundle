@@ -17,7 +17,7 @@ class KernelAwareTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait = new TestKernelAware();
+        $trait = $this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\KernelAware');
         $trait->setKernel($kernel = $this->getMock('Symfony\\Component\\HttpKernel\\HttpKernelInterface'));
         $this->assertSame($kernel, $trait->getKernel());
     }

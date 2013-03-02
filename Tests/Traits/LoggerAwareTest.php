@@ -17,7 +17,7 @@ class LoggerAwareTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait = new TestLoggerAware();
+        $trait = $this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\LoggerAware');
         $trait->setLogger($logger = $this->getMock('Symfony\\Component\\HttpKernel\\Log\\LoggerInterface'));
         $this->assertSame($logger, $trait->getLogger());
     }

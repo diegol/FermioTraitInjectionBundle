@@ -17,7 +17,7 @@ class ValidatorAwareTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait = new TestValidatorAware();
+        $trait = $this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\ValidatorAware');
         $trait->setValidator($validator = $this->getMock('Symfony\\Component\\Validator\\ValidatorInterface'));
         $this->assertSame($validator, $trait->getValidator());
     }

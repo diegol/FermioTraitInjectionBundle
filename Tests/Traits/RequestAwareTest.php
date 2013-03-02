@@ -17,7 +17,7 @@ class RequestAwareTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait = new TestRequestAware();
+        $trait = $this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\RequestAware');
         $trait->setRequest($request = $this->getMock('Symfony\\Component\\HttpFoundation\\Request'));
         $this->assertSame($request, $trait->getRequest());
     }

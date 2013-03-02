@@ -17,7 +17,7 @@ class DoctrineAwareTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait = new TestDoctrineAware();
+        $trait = $this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\DoctrineAware');
         $trait->setDoctrine($doctrine = $this->getMock('Doctrine\\Common\\Persistence\\ManagerRegistry'));
         $this->assertSame($doctrine, $trait->getDoctrine());
     }

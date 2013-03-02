@@ -23,7 +23,7 @@ class SwiftmailerAwareTest extends \PHPUnit_Framework_TestCase
             ->getMock()
         ;
 
-        $trait = new TestSwiftmailerAware();
+        $trait = $this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\SwiftmailerAware');
         $trait->setMailer($mailer);
         $this->assertSame($mailer, $trait->getMailer());
     }

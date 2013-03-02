@@ -17,7 +17,7 @@ class ContainerAwareTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait = new TestContainerAware();
+        $trait = $this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\ContainerAware');
         $trait->setContainer($container = $this->getMock('Symfony\\Component\\DependencyInjection\\ContainerInterface'));
         $this->assertSame($container, $trait->getContainer());
     }

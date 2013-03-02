@@ -19,7 +19,7 @@ class FormFactoryAwareTest extends \PHPUnit_Framework_TestCase
     {
         $formFactory = $this->getMock('Symfony\\Component\\Form\\FormFactoryInterface');
 
-        $trait = new TestFormFactoryAware();
+        $trait =$this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\FormFactoryAware');
         $trait->setFormFactory($formFactory);
         $this->assertSame($formFactory, $trait->getFormFactory());
     }

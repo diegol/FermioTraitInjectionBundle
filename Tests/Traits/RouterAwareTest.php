@@ -17,7 +17,7 @@ class RouterAwareTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait = new TestRouterAware();
+        $trait = $this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\RouterAware');
         $trait->setRouter($router = $this->getMock('Symfony\\Component\\Routing\\RouterInterface'));
         $this->assertSame($router, $trait->getRouter());
     }

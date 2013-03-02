@@ -17,7 +17,7 @@ class TranslatorAwareTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait = new TestTranslatorAware();
+        $trait = $this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\TranslatorAware');
         $trait->setTranslator($translator = $this->getMock('Symfony\\Component\\Translation\\TranslatorInterface'));
         $this->assertSame($translator, $trait->getTranslator());
     }

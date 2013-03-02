@@ -17,7 +17,7 @@ class TemplatingAwareTest extends \PHPUnit_Framework_TestCase
 {
     public function testTrait()
     {
-        $trait = new TestTemplatingAware();
+        $trait = $this->getObjectForTrait('Fermio\\Bundle\\TraitInjectionBundle\\Traits\\TemplatingAware');
         $trait->setTemplating($templating = $this->getMock('Symfony\\Component\\Templating\\EngineInterface'));
         $this->assertSame($templating, $trait->getTemplating());
     }
