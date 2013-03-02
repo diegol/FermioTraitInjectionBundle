@@ -22,7 +22,7 @@
         "symfony/validator": "~2.1"
     },
     "suggest": {
-        "fermio/traits": "Advanced traits for Symfony2 applications"
+        "fermio/traits": "~1.0@dev"
     },
     "autoload": {
         "psr-0": {
