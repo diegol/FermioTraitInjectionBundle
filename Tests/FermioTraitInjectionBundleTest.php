@@ -9,7 +9,7 @@
  * that was distributed with this source code.
  */
 
-namespace Fermio\Bundle\TraitInjectionBundle\Tests\DependencyInjection;
+namespace Fermio\Bundle\TraitInjectionBundle\Tests;
 
 use Fermio\Bundle\TraitInjectionBundle\FermioTraitInjectionBundle;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
