@@ -33,7 +33,7 @@ class FermioTraitInjectionExtensionTest extends \PHPUnit_Framework_TestCase
                 'excludes' => [],
                 'traits' => [
                     'container' => [
-                        'trait'   => 'Fermio\Bundle\TraitInjectionBundle\Traits\ContainerAware',
+                        'trait'   => 'Fermio\\Bundle\\TraitInjectionBundle\\Traits\\ContainerAware',
                         'method'  => 'setContainer',
                         'service' => 'service_container',
                     ],
