@@ -266,6 +266,11 @@ class AddMethodCallsPass implements CompilerPassInterface
             return true;
         }
 
+        // check parent class
+        if (($parent = $class->getParentClass()) && $this->usesTrait($parent, $trait)) {
+            return true;
+        }
+
         // check trait inheritance (trait uses trait)
         foreach ($class->getTraits() as $reflTrait) {
             if ($this->usesTrait($reflTrait, $trait)) {
