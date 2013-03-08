@@ -242,6 +242,15 @@ class AddMethodCallsPass implements CompilerPassInterface
             return false;
         }
 
+        // try to deal with proxy classes
+        if ($file = $definition->getFile()) {
+            require_once $file;
+
+            if (!class_exists($definition->getClass(), false)) {
+                return false;
+            }
+        }
+
         if (!$this->usesTrait(new \ReflectionClass($definition->getClass()), $config['trait'])) {
             return false;
         }
