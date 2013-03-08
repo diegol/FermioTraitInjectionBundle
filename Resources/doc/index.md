@@ -94,7 +94,7 @@ fermio_trait_injection:
             trait: Fermio\Bundle\TraitInjectionBundle\Traits\DoctrineAware
             method: setDoctrine
             service: doctrine # add SecurityAclProviderAware if you enabled ACL
-        fermio.doctrine_aware:
+        fermio.security_acl_provider_aware:
             trait: Fermio\Bundle\TraitInjectionBundle\Traits\SecurityAclProviderAware
             method: setAclProvider
             service: security.acl.provider

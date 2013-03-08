@@ -33,7 +33,7 @@ trait SecurityAclProviderAware
     /**
      * Sets the acl provider.
      *
-     * @param  AclProviderInterface $securityContext The acl provider
+     * @param  AclProviderInterface $aclProvider The acl provider
      * @return void
      */
     public function setAclProvider(AclProviderInterface $aclProvider)
