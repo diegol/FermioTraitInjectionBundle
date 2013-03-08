@@ -89,14 +89,19 @@ will be configured and ready to use out of the box.
 # app/config/config.yml
 fermio_trait_injection:
     defaults: true
-    traits: # manually add DoctrineAware if you use Doctrine
-        fermio.doctrine_aware:
+    traits:
+        fermio.doctrine_aware: # add DoctrineAware if you use Doctrine
             trait: Fermio\Bundle\TraitInjectionBundle\Traits\DoctrineAware
             method: setDoctrine
-            service: doctrine
+            service: doctrine # add SecurityAclProviderAware if you enabled ACL
+        fermio.doctrine_aware:
+            trait: Fermio\Bundle\TraitInjectionBundle\Traits\SecurityAclProviderAware
+            method: setAclProvider
+            service: security.acl.provider
 ```
 
-> **BEWARE:** The `DoctrineAware` trait is not configured by default.
+> **BEWARE:** The `DoctrineAware` and `SecurityAclProviderAware` traits are not
+> configured by default.
 
 You can override each trait configuration at will, just use the same name for
 the trait configuration - it's enough to only provide the settings you want to

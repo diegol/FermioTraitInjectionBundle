@@ -36,6 +36,10 @@
         <service id="router" class="Symfony\Component\Routing\RouterInterface" />
         <service id="fermio.router_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestRouterAware" />
 
+        <!-- Security ACL Provider Aware -->
+        <service id="security.acl.provider" class="Symfony\Component\Security\Acl\Model\AclProviderInterface" />
+        <service id="fermio.security_acl_provider_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestSecurityAclProviderAware" />
+
         <!-- Security Context Aware -->
         <service id="security.context" class="Symfony\Component\Security\Core\SecurityContextInterface" />
         <service id="fermio.security_context_aware" class="Fermio\Bundle\TraitInjectionBundle\Tests\Implementations\TestSecurityContextAware" />
