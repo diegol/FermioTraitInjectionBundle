@@ -53,12 +53,6 @@ class AddMethodCallsPass implements CompilerPassInterface
                 'service' => 'service_container',
                 'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
             ],
-            'fermio.doctrine_aware' => [
-                'trait'   => 'Fermio\\Bundle\\TraitInjectionBundle\\Traits\\DoctrineAware',
-                'method'  => 'setDoctrine',
-                'service' => 'doctrine',
-                'invalid' => ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE,
-            ],
             'fermio.event_dispatcher_aware' => [
                 'trait'   => 'Fermio\\Bundle\\TraitInjectionBundle\\Traits\\EventDispatcherAware',
                 'method'  => 'setEventDispatcher',
