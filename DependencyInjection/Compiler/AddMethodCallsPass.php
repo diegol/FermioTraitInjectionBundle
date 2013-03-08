@@ -238,24 +238,30 @@ class AddMethodCallsPass implements CompilerPassInterface
             return false;
         }
 
+        if ($definition instanceof DefinitionDecorator) {
+            $definition = $container->getDefinition($definition->getParent());
+        }
+
         if ($definition->isSynthetic()) {
             return false;
         }
+
+        $class = $container->getParameterBag()->resolveValue($definition->getClass());
 
         // try to deal with proxy classes
         if ($file = $definition->getFile()) {
             require_once $file;
 
-            if (!class_exists($definition->getClass(), false)) {
+            if (!class_exists($class, false)) {
                 return false;
             }
         }
 
-        if (!$this->usesTrait(new \ReflectionClass($definition->getClass()), $config['trait'])) {
+        if (!$this->usesTrait(new \ReflectionClass($class), $config['trait'])) {
             return false;
         }
 
-        if ($this->hasMethodCall($config['method'], $definition, $container)) {
+        if ($definition->hasMethodCall($config['method'])) {
             return false;
         }
 
@@ -285,28 +291,6 @@ class AddMethodCallsPass implements CompilerPassInterface
             if ($this->usesTrait($reflTrait, $trait)) {
                 return true;
             }
-        }
-
-        return false;
-    }
-
-    /**
-     * Whether the method call is already configured.
-     *
-     * @param  string           $method     The method
-     * @param  Definition       $definition The service definition
-     * @param  ContainerBuilder $container  The container builder
-     * @return boolean          Whether the method call is already configured
-     */
-    private function hasMethodCall($method, Definition $definition, ContainerBuilder $container)
-    {
-        if ($definition->hasMethodCall($method)) {
-            return true;
-        }
-
-        // recursive check for parent definitions
-        if ($definition instanceof DefinitionDecorator) {
-            return $this->hasMethodCall($method, $container->getDefinition($definition->getParent()), $container);
         }
 
         return false;
