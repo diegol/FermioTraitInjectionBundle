@@ -33,10 +33,10 @@ trait ContainerAware
     /**
      * Sets the container.
      *
-     * @param  ContainerInterface $container The container
+     * @param  ContainerInterface|null $container The container or null
      * @return void
      */
-    public function setContainer(ContainerInterface $container)
+    public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
     }
