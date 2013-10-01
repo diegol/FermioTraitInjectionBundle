@@ -6,10 +6,20 @@ php:
 
 matrix:
     allow_failures:
-        - php: 5.5
+        - env: SYMFONY_VERSION=dev-master
+
+env:
+    - SYMFONY_VERSION=2.1.*
+    - SYMFONY_VERSION=2.2.*
+    - SYMFONY_VERSION=2.3.*
+    - SYMFONY_VERSION=dev-master
 
 before_script:
-    - composer install --dev --prefer-source
+    - composer require symfony/framework-bundle:${SYMFONY_VERSION} --no-update
+    - composer require symfony/form:${SYMFONY_VERSION} --no-update
+    - composer require symfony/security:${SYMFONY_VERSION} --no-update
+    - composer require symfony/validator:${SYMFONY_VERSION} --no-update
+    - composer update --dev --prefer-source
 
 script: phpunit --coverage-text
 
