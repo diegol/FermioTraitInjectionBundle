@@ -1,6 +1,6 @@
 # GreenmanTraitInjectionBundle [![Build Status](https://travis-ci.org/fermio/FermioTraitInjectionBundle.png?branch=master)](https://travis-ci.org/fermio/FermioTraitInjectionBundle)
 
-Symfony bundle for trait injection forked from (https://travis-ci.org/fermio/FermioTraitInjectionBundle.png?branch=master)
+Symfony bundle for trait injection forked from (https://github.com/fermio/FermioTraitInjectionBundle)
 
 ## Documentation
 
