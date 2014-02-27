@@ -1,13 +1,13 @@
 {
-    "name": "fermio/trait-injection-bundle",
+    "name": "greenman/trait-injection-bundle",
     "type": "symfony-bundle",
     "description": "Symfony bundle for trait injection.",
-    "keywords": ["fermio", "trait", "injection", "symfony", "bundle"],
+    "keywords": ["greenman", "trait", "injection", "symfony", "bundle"],
     "homepage": "https://github.com/fermio/FermioTraitInjectionBundle",
     "license": "MIT",
     "authors": [{
-        "name": "Pierre Minnieur",
-        "email": "pierre@ferm.io",
+        "name": "Diego Lewin",
+        "email": "diego.lewin@gmail.com",
         "homepage": "http://ferm.io/"
     }],
     "require": {
@@ -22,14 +22,14 @@
         "symfony/validator": "~2.1"
     },
     "suggest": {
-        "fermio/traits": "~1.0@dev"
+        "greenman/traits": "~1.0@dev"
     },
     "autoload": {
         "psr-0": {
-            "Fermio\\Bundle\\TraitInjectionBundle\\": ""
+            "Greenman\\Bundle\\TraitInjectionBundle\\": ""
         }
     },
-    "target-dir": "Fermio/Bundle/TraitInjectionBundle",
+    "target-dir": "Greenman/Bundle/TraitInjectionBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
